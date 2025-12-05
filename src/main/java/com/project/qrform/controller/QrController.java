@@ -17,7 +17,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 @RestController
 public class QrController {
 
-    @GetMapping(value = "/generateQR", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(value = "/", produces = MediaType.IMAGE_PNG_VALUE)
     public ResponseEntity<byte[]> generateQr() throws WriterException, IOException {
 
         String qrText = "https://student-form-production.up.railway.app";

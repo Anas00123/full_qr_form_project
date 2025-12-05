@@ -21,7 +21,7 @@ public class FormController {
     this.service = service;
   }
 
-  @GetMapping("/")
+  @GetMapping("/form")
   public String form(Model model) {
     model.addAttribute("user", new UserForm());
     return "form";
