@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>QR Form</title>
 <link rel="stylesheet" 
@@ -7,15 +7,19 @@
 </head>
 <body class="p-4">
 <h2>Fill Your Details</h2>
-<form action="/form" method="post" class="w-50">
+<form th:action="@{/form}" th:object="${user}" method="post" class="w-50">
+
   <label>Name</label>
-  <input class="form-control" name="name"/>
+  <input class="form-control" th:field="*{name}"/>
+  <div th:if="${#fields.hasErrors('name')}" class="text-danger" th:errors="*{name}"></div>
 
   <label>Email</label>
-  <input class="form-control" name="email"/>
+  <input class="form-control" th:field="*{email}"/>
+  <div th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></div>
 
   <label>Phone</label>
-  <input class="form-control" name="phone"/>
+  <input class="form-control" th:field="*{phone}"/>
+  <div th:if="${#fields.hasErrors('phone')}" class="text-danger" th:errors="*{phone}"></div>
 
   <button class="btn btn-primary mt-3">Submit</button>
 </form>
