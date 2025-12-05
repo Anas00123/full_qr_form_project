@@ -6,3 +6,4 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class QrformApplication {
   public static void main(String[] args){ SpringApplication.run(QrformApplication.class,args); }
 }
+ 
