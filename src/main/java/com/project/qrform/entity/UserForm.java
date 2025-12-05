@@ -15,7 +15,7 @@ public class UserForm {
 
   @NotBlank private String name;
   @Email @NotBlank private String email;
-  @NotBlank private int  phone;
+  @NotBlank private String  phone;
 
   // getters + setters
   public Long getId(){ return id; }
@@ -25,11 +25,12 @@ public class UserForm {
   public void setName(String name){ this.name=name; }
   public String getEmail(){ return email; }
   public void setEmail(String email){ this.email=email; }
-  public int getPhone() {
+  public String getPhone() {
     return phone;
   }
-  public void setPhone(int phone) {
+  public void setPhone(String phone) {
     this.phone = phone;
   }
+ 
 
 }
