@@ -27,9 +27,18 @@ public class FormController {
     return "form";
   }
 
-  @PostMapping("/form")
-  public String submit(@ModelAttribute("user") @Valid UserForm user) {
+ @PostMapping("/form")
+public String submit(@ModelAttribute("user") @Valid UserForm user, 
+                     org.springframework.validation.BindingResult result, 
+                     Model model) {
+    if (result.hasErrors()) {
+        // Return to form page and show validation errors
+        return "form";
+    }
+    
     service.save(user);
+    model.addAttribute("submittedUser", user); // optional: show submitted data
     return "success";
-  }
+}
+
 }
