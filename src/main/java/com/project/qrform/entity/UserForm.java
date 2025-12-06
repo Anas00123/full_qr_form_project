@@ -2,6 +2,7 @@
 package com.project.qrform.entity;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,9 +30,8 @@ public class UserForm {
     private LocalDateTime submittedAt;
 
     @PrePersist
-    protected void onCreate() {
-    ZoneId indiaZone = ZoneId.of("Asia/Kolkata");
-    submittedAt = LocalDateTime.now(indiaZone);
+protected void onCreate() {
+    submittedAt = ZonedDateTime.now(ZoneId.of("Asia/Kolkata")).toLocalDateTime();
 }
 
     
