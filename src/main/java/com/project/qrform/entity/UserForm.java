@@ -15,6 +15,8 @@ public class UserForm {
   @NotBlank private String name;
   @Email @NotBlank private String email;
   @NotBlank private String  phone;
+  @NotBlank
+    private String program; 
 
   // getters + setters
   public Long getId(){ return id; }
@@ -30,6 +32,14 @@ public class UserForm {
   public void setPhone(String phone) {
     this.phone = phone;
   }
+
+    public String getProgram() {
+        return program;
+    }
+
+    public void setProgram(String program) {
+        this.program = program;
+    }
  
 
 }
