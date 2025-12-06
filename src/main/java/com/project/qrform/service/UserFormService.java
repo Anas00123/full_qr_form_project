@@ -11,9 +11,9 @@ public class UserFormService {
     private final UserFormRepo repo;
 
     // Allowed area (example)
-    private static final double ALLOWED_LAT = 26.8682618;
-    private static final double ALLOWED_LNG = 81.0231831;
-    private static final double ALLOWED_RADIUS = 50; // meters
+    private static final double ALLOWED_LAT = 26.8683333;
+    private static final double ALLOWED_LNG = 81.0258333;
+    private static final double ALLOWED_RADIUS = 100; // meters
 
     private static final double EARTH_RADIUS = 6371e3; // meters
 
