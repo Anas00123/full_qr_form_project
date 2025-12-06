@@ -1,4 +1,3 @@
-
 package com.project.qrform.controller;
 
 import org.springframework.stereotype.Controller;
@@ -15,30 +14,46 @@ import jakarta.validation.Valid;
 @Controller
 public class FormController {
 
-  private final UserFormService service;
+    private final UserFormService service;
 
-  public FormController(UserFormService service) {
-    this.service = service;
-  }
+    public FormController(UserFormService service) {
+        this.service = service;
+    }
 
-  @GetMapping("/")
-  public String form(Model model) {
-    model.addAttribute("user", new UserForm());
-    return "form";
-  }
-
- @PostMapping("/form")
-public String submit(@ModelAttribute("user") @Valid UserForm user, 
-                     org.springframework.validation.BindingResult result, 
-                     Model model) {
-    if (result.hasErrors()) {
-        // Return to form page and show validation errors
+    @GetMapping("/")
+    public String form(Model model) {
+        model.addAttribute("user", new UserForm());
         return "form";
     }
-    
-    service.save(user);
-    model.addAttribute("submittedUser", user); // optional: show submitted data
-    return "success";
-}
 
+    @PostMapping("/form")
+    public String submit(@ModelAttribute("user") @Valid UserForm user,
+                         org.springframework.validation.BindingResult result,
+                         Model model) {
+
+        // Check form validation errors
+        if (result.hasErrors()) {
+            return "form";
+        }
+
+        // Check if latitude and longitude are present
+        if (user.getLatitude() == null || user.getLongitude() == null) {
+            model.addAttribute("error", "Cannot detect your location. Please allow location access.");
+            return "form";
+        }
+
+        // Check if user is within allowed area
+        boolean allowed = service.isWithinAllowedArea(user.getLatitude(), user.getLongitude());
+        if (!allowed) {
+            model.addAttribute("error", "You are outside the allowed area!");
+            return "form";
+        }
+
+        // Save the user
+        service.save(user);
+
+        // Optional: pass submitted data to success page
+        model.addAttribute("submittedUser", user);
+        return "success";
+    }
 }
