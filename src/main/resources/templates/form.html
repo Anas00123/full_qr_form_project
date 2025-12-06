@@ -93,8 +93,10 @@
         <div th:if="${#fields.hasErrors('program')}" class="text-danger small" th:errors="*{program}"></div>
 
         <!-- Hidden Latitude & Longitude -->
-        <input type="hidden" id="lat" th:field="*{latitude}">
-        <input type="hidden" id="lng" th:field="*{longitude}">
+        <!-- <input type="hidden" id="lat" th:field="*{latitude}">
+        <input type="hidden" id="lng" th:field="*{longitude}"> -->
+        <input type="hidden" name="latitude" id="lat">
+        <input type="hidden" name="longitude" id="lng">
 
         <!-- Error Alert -->
         <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
