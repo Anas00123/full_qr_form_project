@@ -1,27 +1,39 @@
 
 package com.project.qrform.entity;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class UserForm {
   @Id
-   @GeneratedValue
+  @GeneratedValue
   private Long id;
 
   @NotBlank private String name;
+
   @Email @NotBlank private String email;
+
   @NotBlank private String  phone;
+
   @NotBlank
     private String program;
+
+    private LocalDateTime submittedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        submittedAt = LocalDateTime.now();
+    }
     
-    private Double latitude;  
-    private Double longitude; 
 
   // getters + setters
+  
   public Long getId(){ return id; }
   public void setId(Long id){ this.id=id; }
 
@@ -44,21 +56,15 @@ public class UserForm {
         this.program = program;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public LocalDateTime getSubmittedAt() {
+        return submittedAt;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setSubmittedAt(LocalDateTime submittedAt) {
+        this.submittedAt = submittedAt;
     }
 
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
+    
  
 
 }
