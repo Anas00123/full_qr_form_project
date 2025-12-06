@@ -38,6 +38,12 @@
             font-weight: 500;
         }
 
+        select.form-select {
+            height: 45px;
+            font-size: 15px;
+            border-radius: 6px;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -62,6 +68,17 @@
         <label>Phone</label>
         <input class="form-control" th:field="*{phone}"/>
         <div th:if="${#fields.hasErrors('phone')}" class="text-danger small" th:errors="*{phone}"></div>
+
+        
+        <label>Select Your Program</label>
+        <select class="form-select" th:field="*{program}">
+            <option value="" disabled selected>Select Program</option>
+            <option value="PGP">PGP</option>
+            <option value="SUMMER TRAINING">SUMMER TRAINING</option>
+            <option value="WINTER TRAINING">WINTER TRAINING</option>
+            <option value="SIX-MONTH">SIX-MONTH</option>
+        </select>
+        <div th:if="${#fields.hasErrors('program')}" class="text-danger small" th:errors="*{program}"></div>
 
         <button class="btn btn-primary mt-4">Submit</button>
     </form>
